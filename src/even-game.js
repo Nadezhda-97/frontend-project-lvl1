@@ -1,14 +1,14 @@
 import readlineSync from 'readline-sync';
 
-const evenAndOddNumbersGame = () => {
+const isEven = () => {
+  console.log('Welcome to the Brain Games!');
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}!`);
 
   console.log('Answer "yes" if the number is even, otherwise answer "no".');
 
-  let i = 1;
   let result;
-  while (i <= 3) {
+  for (let i = 1; i <= 3; i += 1) {
     const randomNumber = Math.round(Math.random() * 100);
     console.log(`Question: ${randomNumber}`);
 
@@ -33,7 +33,6 @@ const evenAndOddNumbersGame = () => {
         break;
       }
     }
-    i += 1;
   }
 
   if (result === 'Correct!') {
@@ -43,4 +42,4 @@ const evenAndOddNumbersGame = () => {
   }
 };
 
-export default evenAndOddNumbersGame;
+export default isEven;
