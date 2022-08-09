@@ -7,12 +7,9 @@ const gcd = () => {
     console.log(`Hello, ${userName}!`);
     task('Find the greatest common divisor of given numbers.');
 
-    const number1 = randomNumber();
-    const number2 = randomNumber();
-    
-    const twoNumbers = `${number1} ${number2}`;
-
+let resultOfFindGcd;
     const findGcd = (a, b) => {
+        resultOfFindGcd = `${a} ${b}`;
 
         let c;
         while (b !== 0) {
@@ -25,10 +22,10 @@ const gcd = () => {
 
     let result;
     for (let i = 1; i <= 3; i += 1) {
-        console.log(`Question: ${twoNumbers}`);
-        const answerOfUser = readlineSync.question('Your answer: ');
+        const forCompare = findGcd(randomNumber(), randomNumber()).toString();
 
-        const forCompare = findGcd(number1, number2).toString();
+        console.log(`Question: ${resultOfFindGcd}`);
+        const answerOfUser = readlineSync.question('Your answer: ');
 
         if (forCompare === answerOfUser) {
             result = 'Correct!';
