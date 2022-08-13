@@ -15,7 +15,7 @@ const prog = () => {
     const randomLengthOfMathProg = randElementOfArray(lengthOfMathProg);
 
     const randHiddenNumber = (number) => {
-      const num = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+      const num = (min, max) => Math.floor(Math.random() * (max - min)) + min;
       return num(0, number);
     };
     const hiddenNumber = randHiddenNumber(randomLengthOfMathProg);
