@@ -3,8 +3,8 @@ import readlineSync from 'readline-sync';
 const greeting = () => console.log('Welcome to the Brain Games!');
 
 const getUserName = () => {
-    const userName = readlineSync.question('May I have your name? ');
-    return userName;
+  const userName = readlineSync.question('May I have your name? ');
+  return userName;
 };
 
 const greetingByName = (str) => console.log(`Hello, ${str}!`);
@@ -22,5 +22,5 @@ const randElementOfArray = (array) => {
 };
 
 export {
-    greeting, getUserName, greetingByName, task, randomNumber, randElementOfArray,
+  greeting, getUserName, greetingByName, task, randomNumber, randElementOfArray,
 };
