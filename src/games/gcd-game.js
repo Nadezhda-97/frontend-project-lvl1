@@ -1,10 +1,12 @@
 import readlineSync from 'readline-sync';
-import { greeting, task, randomNumber } from '../index.js';
+import {
+  greeting, getUserName, greetingByName, task, randomNumber,
+} from '../index.js';
 
 const gcd = () => {
   greeting();
-  const userName = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${userName}!`);
+  const name = getUserName();
+  greetingByName(name);
   task('Find the greatest common divisor of given numbers.');
 
   let resultOfFindGcd;
@@ -40,9 +42,9 @@ const gcd = () => {
   }
 
   if (result === 'Correct!') {
-    console.log(`Congratulations, ${userName}!`);
+    console.log(`Congratulations, ${name}!`);
   } else {
-    console.log(`Let's try again, ${userName}!`);
+    console.log(`Let's try again, ${name}!`);
   }
 };
 

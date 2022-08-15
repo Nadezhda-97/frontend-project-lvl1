@@ -1,41 +1,38 @@
 import readlineSync from 'readline-sync';
-import { greeting, task, randomNumber } from '../index.js';
+import {
+  greeting, getUserName, greetingByName, task, randomNumber, randElementOfArray,
+} from '../index.js';
 
-const calculator = () => {
+const calc = () => {
   greeting();
-  const userName = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${userName}!`);
+  const name = getUserName();
+  greetingByName(name);
   task('What is the result of the expression?');
 
   let resultOfMathExpression;
-  const mathExpression = () => {
+  const mathExpression = (number1, number2) => {
     const operators = ['+', '-', '*'];
-    const indexOfOperators = [0, 1, 2];
-    const randomIndex = Math.floor(Math.random() * indexOfOperators.length);
-    const randomOperator = operators[randomIndex];
-
-    const number1 = randomNumber();
-    const number2 = randomNumber();
+    const randomOperator = randElementOfArray(operators);
 
     switch (randomOperator) {
       case '+':
-        resultOfMathExpression = number1 + number2;
-        return `${number1} + ${number2}`;
+        resultOfMathExpression = `${number1} + ${number2}`;
+        return number1 + number2;
       case '-':
-        resultOfMathExpression = number1 - number2;
-        return `${number1} - ${number2}`;
+        resultOfMathExpression = `${number1} - ${number2}`;
+        return number1 - number2;
       default:
-        resultOfMathExpression = number1 * number2;
-        return `${number1} * ${number2}`;
+        resultOfMathExpression = `${number1} * ${number2}`;
+        return number1 * number2;
     }
   };
 
   let result;
   for (let i = 1; i <= 3; i += 1) {
-    console.log(`Question: ${mathExpression()}`);
-    const answerOfUser = readlineSync.question('Your answer: ');
+    const forCompare = mathExpression(randomNumber(), randomNumber()).toString();
 
-    const forCompare = resultOfMathExpression.toString();
+    console.log(`Question: ${resultOfMathExpression}`);
+    const answerOfUser = readlineSync.question('Your answer: ');
 
     if (forCompare === answerOfUser) {
       result = 'Correct!';
@@ -48,10 +45,10 @@ const calculator = () => {
   }
 
   if (result === 'Correct!') {
-    console.log(`Congratulations, ${userName}!`);
+    console.log(`Congratulations, ${name}!`);
   } else {
-    console.log(`Let's try again, ${userName}!`);
+    console.log(`Let's try again, ${name}!`);
   }
 };
 
-export default calculator;
+export default calc;

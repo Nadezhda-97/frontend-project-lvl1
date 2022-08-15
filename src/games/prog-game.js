@@ -1,16 +1,16 @@
 import readlineSync from 'readline-sync';
 import {
-  greeting, task, randomNumber, randElementOfArray,
+  greeting, getUserName, greetingByName, task, randomNumber, randElementOfArray,
 } from '../index.js';
 
 const prog = () => {
   greeting();
-  const userName = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${userName}!`);
+  const name = getUserName();
+  greetingByName(name);
   task('What number is missing in the progression?');
 
-  let answer;
-  const mathProgression = () => {
+  const resultOfMathProg = [];
+  const mathProgression = (rndNumber) => {
     const lengthOfMathProg = [5, 6, 7, 8, 9, 10];
     const randomLengthOfMathProg = randElementOfArray(lengthOfMathProg);
 
@@ -20,31 +20,30 @@ const prog = () => {
     };
     const hiddenNumber = randHiddenNumber(randomLengthOfMathProg);
 
-    let firstNumber = randomNumber();
+    const elements = [2, 3, 5];
+    const randomElement = randElementOfArray(elements);
 
-    const nElements = [2, 3, 5];
-    const randomNElement = randElementOfArray(nElements);
-
-    const resultOfMathProg = [];
+    let firstNumber = rndNumber;
+    let answer;
     for (let i = 0; i < randomLengthOfMathProg; i += 1) {
       if (i !== hiddenNumber) {
-        firstNumber += randomNElement;
+        firstNumber += randomElement;
         resultOfMathProg[i] = firstNumber;
       } else {
-        firstNumber += randomNElement;
+        firstNumber += randomElement;
         resultOfMathProg[i] = '..';
         answer = firstNumber;
       }
     }
-    return resultOfMathProg;
+    return answer;
   };
 
   let result;
   for (let i = 1; i <= 3; i += 1) {
-    console.log(`Question: ${mathProgression().join(' ')}`);
-    const answerOfUser = readlineSync.question('Your answer: ');
+    const forCompare = mathProgression(randomNumber()).toString();
 
-    const forCompare = answer.toString();
+    console.log(`Question: ${resultOfMathProg.join(' ')}`);
+    const answerOfUser = readlineSync.question('Your answer: ');
 
     if (forCompare === answerOfUser) {
       result = 'Correct!';
@@ -57,9 +56,9 @@ const prog = () => {
   }
 
   if (result === 'Correct!') {
-    console.log(`Congratulations, ${userName}!`);
+    console.log(`Congratulations, ${name}!`);
   } else {
-    console.log(`Let's try again, ${userName}!`);
+    console.log(`Let's try again, ${name}!`);
   }
 };
 

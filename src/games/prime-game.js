@@ -3,14 +3,14 @@ import {
   greeting, getUserName, greetingByName, task, randomNumber,
 } from '../index.js';
 
-const isPrime = () => {
+const prime = () => {
   greeting();
   const name = getUserName();
   greetingByName(name);
   task('Answer "yes" if given number is prime. Otherwise answer "no".');
 
   let element;
-  const primeOrNo = (number) => {
+  const isPrime = (number) => {
     element = number;
     if (number < 2) {
       return false;
@@ -34,7 +34,7 @@ const isPrime = () => {
 
   let result;
   for (let i = 1; i <= 3; i += 1) {
-    const forCompare = booleanToAnswer(primeOrNo(randomNumber()));
+    const forCompare = booleanToAnswer(isPrime(randomNumber()));
 
     console.log(`Question: ${element}`);
     const answerOfUser = readlineSync.question('Your answer: ');
@@ -56,4 +56,4 @@ const isPrime = () => {
   }
 };
 
-export default isPrime;
+export default prime;
