@@ -1,30 +1,27 @@
-import readlineSync from 'readline-sync';
 import {
-  greeting, getUserName, greetingByName, task, randomNumber, randElementOfArray,
+  randomNumber, randElementOfArray, game,
 } from '../index.js';
 
 const prog = () => {
-  greeting();
-  const name = getUserName();
-  greetingByName(name);
-  task('What number is missing in the progression?');
+  const task = 'What number is missing in the progression?';
 
-  const resultOfMathProg = [];
-  const mathProgression = (rndNumber) => {
+  const randHiddenNumber = (number) => {
+    const num = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+    return num(0, number);
+  };
+
+  const mathProgression = () => {
     const lengthOfMathProg = [5, 6, 7, 8, 9, 10];
     const randomLengthOfMathProg = randElementOfArray(lengthOfMathProg);
 
-    const randHiddenNumber = (number) => {
-      const num = (min, max) => Math.floor(Math.random() * (max - min)) + min;
-      return num(0, number);
-    };
     const hiddenNumber = randHiddenNumber(randomLengthOfMathProg);
 
     const elements = [2, 3, 5];
     const randomElement = randElementOfArray(elements);
 
-    let firstNumber = rndNumber;
+    let firstNumber = randomNumber();
     let answer;
+    const resultOfMathProg = [];
     for (let i = 0; i < randomLengthOfMathProg; i += 1) {
       if (i !== hiddenNumber) {
         firstNumber += randomElement;
@@ -35,31 +32,11 @@ const prog = () => {
         answer = firstNumber;
       }
     }
-    return answer;
+
+    return [resultOfMathProg.join(' '), answer.toString()];
   };
 
-  let result;
-  for (let i = 1; i <= 3; i += 1) {
-    const forCompare = mathProgression(randomNumber()).toString();
-
-    console.log(`Question: ${resultOfMathProg.join(' ')}`);
-    const answerOfUser = readlineSync.question('Your answer: ');
-
-    if (forCompare === answerOfUser) {
-      result = 'Correct!';
-      console.log(result);
-    } else {
-      result = `"${answerOfUser}" is wrong answer ;(. Correct answer was "${forCompare}".`;
-      console.log(result);
-      break;
-    }
-  }
-
-  if (result === 'Correct!') {
-    console.log(`Congratulations, ${name}!`);
-  } else {
-    console.log(`Let's try again, ${name}!`);
-  }
+  game(task, mathProgression);
 };
 
 export default prog;

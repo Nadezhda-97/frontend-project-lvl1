@@ -1,17 +1,15 @@
-import readlineSync from 'readline-sync';
 import {
-  greeting, getUserName, greetingByName, task, randomNumber,
+  randomNumber, game,
 } from '../index.js';
 
 const gcd = () => {
-  greeting();
-  const name = getUserName();
-  greetingByName(name);
-  task('Find the greatest common divisor of given numbers.');
+  const task = 'Find the greatest common divisor of given numbers.';
 
-  let resultOfFindGcd;
-  const findGcd = (number1, number2) => {
-    resultOfFindGcd = `${number1} ${number2}`;
+  const findGcd = () => {
+    const number1 = randomNumber();
+    const number2 = randomNumber();
+
+    const rndNumbersToString = `${number1} ${number2}`;
 
     let a = number1;
     let b = number2;
@@ -21,31 +19,12 @@ const gcd = () => {
       b = a % b;
       a = c;
     }
-    return a;
+    const resultOfFindGcd = a;
+
+    return [rndNumbersToString, resultOfFindGcd.toString()];
   };
 
-  let result;
-  for (let i = 1; i <= 3; i += 1) {
-    const forCompare = findGcd(randomNumber(), randomNumber()).toString();
-
-    console.log(`Question: ${resultOfFindGcd}`);
-    const answerOfUser = readlineSync.question('Your answer: ');
-
-    if (forCompare === answerOfUser) {
-      result = 'Correct!';
-      console.log(result);
-    } else {
-      result = `"${answerOfUser}" is wrong answer ;(. Correct answer was "${forCompare}".`;
-      console.log(result);
-      break;
-    }
-  }
-
-  if (result === 'Correct!') {
-    console.log(`Congratulations, ${name}!`);
-  } else {
-    console.log(`Let's try again, ${name}!`);
-  }
+  game(task, findGcd);
 };
 
 export default gcd;

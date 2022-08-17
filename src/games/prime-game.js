@@ -1,59 +1,40 @@
-import readlineSync from 'readline-sync';
 import {
-  greeting, getUserName, greetingByName, task, randomNumber,
+  randomNumber, game,
 } from '../index.js';
 
 const prime = () => {
-  greeting();
-  const name = getUserName();
-  greetingByName(name);
-  task('Answer "yes" if given number is prime. Otherwise answer "no".');
+  const task = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
-  let element;
-  const isPrime = (number) => {
-    element = number;
-    if (number < 2) {
+  let random;
+  const isPrime = () => {
+    random = randomNumber();
+    if (random < 2) {
       return false;
     }
 
-    for (let i = 2; i < number; i += 1) {
-      if (number % i === 0) {
+    for (let i = 2; i < random; i += 1) {
+      if (random % i === 0) {
         return false;
       }
     }
 
-    return number > 1;
+    return random > 1;
   };
 
-  const booleanToAnswer = (func) => {
-    if (func === true) {
-      return 'yes';
-    }
-    return 'no';
-  };
+  const booleanToAnswer = () => {
+    const result = isPrime();
 
-  let result;
-  for (let i = 1; i <= 3; i += 1) {
-    const forCompare = booleanToAnswer(isPrime(randomNumber()));
-
-    console.log(`Question: ${element}`);
-    const answerOfUser = readlineSync.question('Your answer: ');
-
-    if (forCompare === answerOfUser) {
-      result = 'Correct!';
-      console.log(result);
+    let answer;
+    if (result === true) {
+      answer = 'yes';
     } else {
-      result = `"${answerOfUser}" is wrong answer ;(. Correct answer was "${forCompare}".`;
-      console.log(result);
-      break;
+      answer = 'no';
     }
-  }
 
-  if (result === 'Correct!') {
-    console.log(`Congratulations, ${name}!`);
-  } else {
-    console.log(`Let's try again, ${name}!`);
-  }
+    return [random, answer];
+  };
+
+  game(task, booleanToAnswer);
 };
 
 export default prime;

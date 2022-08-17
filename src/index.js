@@ -1,16 +1,5 @@
 import readlineSync from 'readline-sync';
 
-const greeting = () => console.log('Welcome to the Brain Games!');
-
-const getUserName = () => {
-  const userName = readlineSync.question('May I have your name? ');
-  return userName;
-};
-
-const greetingByName = (str) => console.log(`Hello, ${str}!`);
-
-const task = (str) => console.log(str);
-
 const randomNumber = () => {
   const number = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
   return number(1, 100);
@@ -21,6 +10,39 @@ const randElementOfArray = (array) => {
   return array[randIndex];
 };
 
+const game = (str, func) => {
+  console.log('Welcome to the Brain Games!');
+  const userName = readlineSync.question('May I have your name? ');
+  console.log(`Hello, ${userName}!`);
+
+  console.log(str);
+
+  let result;
+  for (let i = 0; i < 3; i += 1) {
+    const resultOfImportGame = func();
+
+    console.log(`Question: ${resultOfImportGame[0]}`);
+    const answerOfUser = readlineSync.question('Your answer: ');
+
+    const answerOfSystem = resultOfImportGame[1];
+
+    if (answerOfSystem === answerOfUser) {
+      result = 'Correct!';
+      console.log(result);
+    } else {
+      result = `"${answerOfUser}" is wrong answer ;(. Correct answer was "${answerOfSystem}".`;
+      console.log(result);
+      break;
+    }
+  }
+
+  if (result === 'Correct!') {
+    console.log(`Congratulations, ${userName}!`);
+  } else {
+    console.log(`Let's try again, ${userName}!`);
+  }
+};
+
 export {
-  greeting, getUserName, greetingByName, task, randomNumber, randElementOfArray,
+  randomNumber, randElementOfArray, game,
 };

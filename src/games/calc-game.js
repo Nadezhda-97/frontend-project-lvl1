@@ -1,54 +1,37 @@
-import readlineSync from 'readline-sync';
 import {
-  greeting, getUserName, greetingByName, task, randomNumber, randElementOfArray,
+  randomNumber, randElementOfArray, game,
 } from '../index.js';
 
 const calc = () => {
-  greeting();
-  const name = getUserName();
-  greetingByName(name);
-  task('What is the result of the expression?');
+  const task = 'What is the result of the expression?';
 
-  let resultOfMathExpression;
-  const mathExpression = (number1, number2) => {
+  const mathExpression = () => {
+    const number1 = randomNumber();
+    const number2 = randomNumber();
+
     const operators = ['+', '-', '*'];
     const randomOperator = randElementOfArray(operators);
 
+    let resultOfMathExpression;
+    let resultToString;
     switch (randomOperator) {
       case '+':
-        resultOfMathExpression = `${number1} + ${number2}`;
-        return number1 + number2;
+        resultOfMathExpression = number1 + number2;
+        resultToString = `${number1} + ${number2}`;
+        break;
       case '-':
-        resultOfMathExpression = `${number1} - ${number2}`;
-        return number1 - number2;
+        resultOfMathExpression = number1 - number2;
+        resultToString = `${number1} - ${number2}`;
+        break;
       default:
-        resultOfMathExpression = `${number1} * ${number2}`;
-        return number1 * number2;
+        resultOfMathExpression = number1 * number2;
+        resultToString = `${number1} * ${number2}`;
     }
+
+    return [resultToString, resultOfMathExpression.toString()];
   };
 
-  let result;
-  for (let i = 1; i <= 3; i += 1) {
-    const forCompare = mathExpression(randomNumber(), randomNumber()).toString();
-
-    console.log(`Question: ${resultOfMathExpression}`);
-    const answerOfUser = readlineSync.question('Your answer: ');
-
-    if (forCompare === answerOfUser) {
-      result = 'Correct!';
-      console.log(result);
-    } else {
-      result = `"${answerOfUser}" is wrong answer ;(. Correct answer was "${forCompare}".`;
-      console.log(result);
-      break;
-    }
-  }
-
-  if (result === 'Correct!') {
-    console.log(`Congratulations, ${name}!`);
-  } else {
-    console.log(`Let's try again, ${name}!`);
-  }
+  game(task, mathExpression);
 };
 
 export default calc;
