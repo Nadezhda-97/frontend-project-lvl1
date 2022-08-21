@@ -1,16 +1,17 @@
+import { getRandomNumber, getRandElementOfArray } from '../utils.js';
 import {
-  randomNumber, randElementOfArray, game,
+  runLogicOfGame
 } from '../index.js';
 
-const calc = () => {
+const runCalc = () => {
   const task = 'What is the result of the expression?';
 
-  const mathExpression = () => {
-    const number1 = randomNumber();
-    const number2 = randomNumber();
+  const getMathExpression = () => {
+    const number1 = getRandomNumber(1, 100);
+    const number2 = getRandomNumber(1, 100);
 
     const operators = ['+', '-', '*'];
-    const randomOperator = randElementOfArray(operators);
+    const randomOperator = getRandElementOfArray(operators);
 
     let resultOfMathExpression;
     let resultToString;
@@ -31,7 +32,7 @@ const calc = () => {
     return [resultToString, resultOfMathExpression.toString()];
   };
 
-  game(task, mathExpression);
+  runLogicOfGame(task, getMathExpression);
 };
 
-export default calc;
+export default runCalc;
