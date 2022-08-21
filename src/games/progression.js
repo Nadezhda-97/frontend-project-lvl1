@@ -1,25 +1,21 @@
+import { getRandomNumber, getRandElementOfArray } from '../utils.js';
 import {
-  randomNumber, randElementOfArray, game,
+  runLogicOfGame
 } from '../index.js';
 
-const prog = () => {
+const runProgression = () => {
   const task = 'What number is missing in the progression?';
 
-  const randHiddenNumber = (number) => {
-    const num = (min, max) => Math.floor(Math.random() * (max - min)) + min;
-    return num(0, number);
-  };
-
-  const mathProgression = () => {
+  const getMathProgression = () => {
     const lengthOfMathProg = [5, 6, 7, 8, 9, 10];
-    const randomLengthOfMathProg = randElementOfArray(lengthOfMathProg);
+    const randomLengthOfMathProg = getRandElementOfArray(lengthOfMathProg);
 
-    const hiddenNumber = randHiddenNumber(randomLengthOfMathProg);
+    const hiddenNumber = getRandomNumber(0, (randomLengthOfMathProg - 1));
 
     const elements = [2, 3, 5];
-    const randomElement = randElementOfArray(elements);
+    const randomElement = getRandElementOfArray(elements);
 
-    let firstNumber = randomNumber();
+    let firstNumber = getRandomNumber(1, 100);
     let answer;
     const resultOfMathProg = [];
     for (let i = 0; i < randomLengthOfMathProg; i += 1) {
@@ -36,7 +32,7 @@ const prog = () => {
     return [resultOfMathProg.join(' '), answer.toString()];
   };
 
-  game(task, mathProgression);
+  runLogicOfGame(task, getMathProgression);
 };
 
-export default prog;
+export default runProgression;
