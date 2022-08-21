@@ -1,13 +1,14 @@
+import { getRandomNumber } from '../utils.js';
 import {
-  randomNumber, game,
+  runLogicOfGame
 } from '../index.js';
 
-const prime = () => {
+const runPrime = () => {
   const task = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
   let random;
   const isPrime = () => {
-    random = randomNumber();
+    random = getRandomNumber(1, 100);
     if (random < 2) {
       return false;
     }
@@ -21,7 +22,7 @@ const prime = () => {
     return random > 1;
   };
 
-  const booleanToAnswer = () => {
+  const exportBooleanToAnswer = () => {
     const result = isPrime();
 
     let answer;
@@ -34,7 +35,7 @@ const prime = () => {
     return [random, answer];
   };
 
-  game(task, booleanToAnswer);
+  runLogicOfGame(task, exportBooleanToAnswer);
 };
 
-export default prime;
+export default runPrime;
