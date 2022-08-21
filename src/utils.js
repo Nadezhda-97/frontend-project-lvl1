@@ -1,4 +1,4 @@
-const getRandomNumber = (number1, number2) => Math.floor(Math.random() * (number2 - number1 + 1)) + number1;
+const getRandomNumber = (num1, num2) => Math.floor(Math.random() * (num2 - num1 + 1)) + num1;
 
 const getRandElementOfArray = (array) => {
   const randIndex = Math.floor(Math.random() * array.length);
