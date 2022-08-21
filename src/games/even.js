@@ -1,24 +1,25 @@
+import { getRandomNumber } from '../utils.js';
 import {
-  randomNumber, game,
+  runLogicOfGame
 } from '../index.js';
 
-const even = () => {
+const runEven = () => {
   const task = 'Answer "yes" if the number is even, otherwise answer "no".';
 
-  const isEven = () => {
-    const random = randomNumber();
+  const getAnswerEvenOrNo = () => {
+    const random = getRandomNumber(1, 100);
 
     let answer;
-    if (random % 2 === 0) {
-      answer = 'yes';
-    } else {
-      answer = 'no';
-    }
+      if (random % 2 === 0) {
+        answer = 'yes';
+      } else {
+        answer = 'no';
+      }
 
-    return [random, answer];
-  };
+      return [random, answer];
+    };
 
-  game(task, isEven);
+  runLogicOfGame(task, getAnswerEvenOrNo);
 };
 
-export default even;
+export default runEven;

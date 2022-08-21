@@ -10,7 +10,7 @@ const randElementOfArray = (array) => {
   return array[randIndex];
 };
 
-const game = (str, func) => {
+const runLogicOfGame = (str, func) => {
   console.log('Welcome to the Brain Games!');
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}!`);
@@ -44,5 +44,5 @@ const game = (str, func) => {
 };
 
 export {
-  randomNumber, randElementOfArray, game,
+  randomNumber, randElementOfArray, runLogicOfGame,
 };
