@@ -1,7 +1,5 @@
 import { getRandomNumber } from '../utils.js';
-import {
-  runLogicOfGame
-} from '../index.js';
+import runLogicOfGame from '../index.js';
 
 const runEven = () => {
   const task = 'Answer "yes" if the number is even, otherwise answer "no".';
@@ -10,14 +8,14 @@ const runEven = () => {
     const random = getRandomNumber(1, 100);
 
     let answer;
-      if (random % 2 === 0) {
-        answer = 'yes';
-      } else {
-        answer = 'no';
-      }
+    if (random % 2 === 0) {
+      answer = 'yes';
+    } else {
+      answer = 'no';
+    }
 
-      return [random, answer];
-    };
+    return [random, answer];
+  };
 
   runLogicOfGame(task, getAnswerEvenOrNo);
 };

@@ -1,7 +1,5 @@
 import { getRandomNumber, getRandElementOfArray } from '../utils.js';
-import {
-  runLogicOfGame
-} from '../index.js';
+import runLogicOfGame from '../index.js';
 
 const runProgression = () => {
   const task = 'What number is missing in the progression?';
