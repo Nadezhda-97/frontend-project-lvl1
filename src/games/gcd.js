@@ -1,13 +1,14 @@
+import { getRandomNumber } from '../utils.js';
 import {
-  randomNumber, game,
+  runLogicOfGame
 } from '../index.js';
 
-const gcd = () => {
+const runGcd = () => {
   const task = 'Find the greatest common divisor of given numbers.';
 
   const findGcd = () => {
-    const number1 = randomNumber();
-    const number2 = randomNumber();
+    const number1 = getRandomNumber(1, 100);
+    const number2 = getRandomNumber(1, 100);
 
     const rndNumbersToString = `${number1} ${number2}`;
 
@@ -24,7 +25,7 @@ const gcd = () => {
     return [rndNumbersToString, resultOfFindGcd.toString()];
   };
 
-  game(task, findGcd);
+  runLogicOfGame(task, findGcd);
 };
 
-export default gcd;
+export default runGcd;
