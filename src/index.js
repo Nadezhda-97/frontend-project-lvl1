@@ -7,31 +7,23 @@ const runLogicOfGame = (taskOfGame, resultOfGame) => {
 
   console.log(taskOfGame);
 
-  let result;
   const roundsCount = 3;
   for (let i = 0; i < roundsCount; i += 1) {
     const questionAndRightAnswer = resultOfGame();
+    const [questionForUser, rightAnswer] = questionAndRightAnswer;
 
-    console.log(`Question: ${questionAndRightAnswer[0]}`);
+    console.log(`Question: ${questionForUser}`);
     const answerOfUser = readlineSync.question('Your answer: ');
 
-    const answerOfSystem = questionAndRightAnswer[1];
-
-    if (answerOfSystem === answerOfUser) {
-      result = 'Correct!';
-      console.log(result);
-    } else {
-      result = `"${answerOfUser}" is wrong answer ;(. Correct answer was "${answerOfSystem}".`;
-      console.log(result);
-      break;
+    if (rightAnswer !== answerOfUser) {
+      console.log(`"${answerOfUser}" is wrong answer ;(. Correct answer was "${rightAnswer}".`);
+      console.log(`Let's try again, ${userName}!`);
+      return;
     }
+    console.log('Correct!');
   }
 
-  if (result === 'Correct!') {
-    console.log(`Congratulations, ${userName}!`);
-  } else {
-    console.log(`Let's try again, ${userName}!`);
-  }
+  console.log(`Congratulations, ${userName}!`);
 };
 
 export default runLogicOfGame;
