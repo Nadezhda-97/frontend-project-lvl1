@@ -8,13 +8,16 @@
 Brain Games is a set of five console games. Each game asks questions that need to be answered.
 
 ### Requirements
-* Mac/Linux
-* Node.js (version 13 and above)
+* Node.js (version 13.2.0 and above)
 
 ### Install
 ```
 git clone git@github.com:Nadezhda-97/frontend-project-lvl1.git
+```
+```
 cd frontend-project-lvl1
+```
+```
 make install
 ```
 ### Demo
