@@ -1,39 +1,34 @@
 import { getRandomNumber } from '../utils.js';
-import runLogicOfGame from '../index.js';
+import run from '../index.js';
 
-const runPrime = () => {
-  const task = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+const description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
-  let random;
-  const isPrime = () => {
-    random = getRandomNumber(1, 100);
-    if (random < 2) {
+const min = 1;
+const max = 100;
+
+const isPrime = (number) => {
+  if (number < 2) {
+    return false;
+  }
+
+  for (let i = 2; i < number; i += 1) {
+    if (number % i === 0) {
       return false;
     }
+  }
 
-    for (let i = 2; i < random; i += 1) {
-      if (random % i === 0) {
-        return false;
-      }
-    }
+  return number > 1;
+};
 
-    return random > 1;
+const runPrime = () => {
+  const generateTask = () => {
+    const question = getRandomNumber(min, max);
+    const answer = isPrime(question) ? 'yes' : 'no';
+
+    return [question, answer];
   };
 
-  const exportBooleanToAnswer = () => {
-    const result = isPrime();
-
-    let answer;
-    if (result === true) {
-      answer = 'yes';
-    } else {
-      answer = 'no';
-    }
-
-    return [random, answer];
-  };
-
-  runLogicOfGame(task, exportBooleanToAnswer);
+  run(description, generateTask);
 };
 
 export default runPrime;

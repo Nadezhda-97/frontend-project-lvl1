@@ -1,36 +1,39 @@
-import { getRandomNumber, getRandElementOfArray } from '../utils.js';
-import runLogicOfGame from '../index.js';
+import { getRandomNumber, getRandomIndex } from '../utils.js';
+import run from '../index.js';
+
+const description = 'What is the result of the expression?';
+
+const min = 1;
+const max = 100;
+const operators = ['+', '-', '*'];
+
+const getMathExpressionResult = (randomOperator, firstNumber, secondNumber) => {
+  switch (randomOperator) {
+    case '+':
+      return firstNumber + secondNumber;
+    case '-':
+      return firstNumber - secondNumber;
+    case '*':
+      return firstNumber * secondNumber;
+    default:
+      return null;
+  }
+};
 
 const runCalc = () => {
-  const task = 'What is the result of the expression?';
+  const generateTask = () => {
+    const number1 = getRandomNumber(min, max);
+    const number2 = getRandomNumber(min, max);
+    const operator = operators[getRandomIndex(operators)];
 
-  const getMathExpression = () => {
-    const number1 = getRandomNumber(1, 100);
-    const number2 = getRandomNumber(1, 100);
+    const mathExpression = `${number1} ${operator} ${number2}`;
 
-    const operators = ['+', '-', '*'];
-    const randomOperator = getRandElementOfArray(operators);
+    const mathExpressionResult = getMathExpressionResult(operator, number1, number2);
 
-    let resultOfMathExpression;
-    let resultToString;
-    switch (randomOperator) {
-      case '+':
-        resultOfMathExpression = number1 + number2;
-        resultToString = `${number1} + ${number2}`;
-        break;
-      case '-':
-        resultOfMathExpression = number1 - number2;
-        resultToString = `${number1} - ${number2}`;
-        break;
-      default:
-        resultOfMathExpression = number1 * number2;
-        resultToString = `${number1} * ${number2}`;
-    }
-
-    return [resultToString, resultOfMathExpression.toString()];
+    return [mathExpression, mathExpressionResult.toString()];
   };
 
-  runLogicOfGame(task, getMathExpression);
+  run(description, generateTask);
 };
 
 export default runCalc;

@@ -1,29 +1,37 @@
 import { getRandomNumber } from '../utils.js';
-import runLogicOfGame from '../index.js';
+import run from '../index.js';
+
+const description = 'Find the greatest common divisor of given numbers.';
+
+const min = 1;
+const max = 100;
+
+const findGcd = (firstNumber, secondNumber) => {
+  let valueOne = firstNumber;
+  let valueTwo = secondNumber;
+  let valueThree;
+  while (valueTwo !== 0) {
+    valueThree = valueTwo;
+    valueTwo = valueOne % valueTwo;
+    valueOne = valueThree;
+  }
+
+  return valueOne;
+};
 
 const runGcd = () => {
-  const task = 'Find the greatest common divisor of given numbers.';
+  const generateTask = () => {
+    const number1 = getRandomNumber(min, max);
+    const number2 = getRandomNumber(min, max);
 
-  const findGcd = () => {
-    const number1 = getRandomNumber(1, 100);
-    const number2 = getRandomNumber(1, 100);
+    const question = `${number1} ${number2}`;
 
-    const rndNumbersToString = `${number1} ${number2}`;
+    const answer = findGcd(number1, number2);
 
-    let a = number1;
-    let b = number2;
-    let c;
-    while (b !== 0) {
-      c = b;
-      b = a % b;
-      a = c;
-    }
-    const resultOfFindGcd = a;
-
-    return [rndNumbersToString, resultOfFindGcd.toString()];
+    return [question, answer.toString()];
   };
 
-  runLogicOfGame(task, findGcd);
+  run(description, generateTask);
 };
 
 export default runGcd;
