@@ -10,10 +10,10 @@ const isEven = (number) => number % 2 === 0;
 
 const runEven = () => {
   const generateTask = () => {
-    const question = getRandomNumber(min, max);
-    const answer = isEven(question) ? 'yes' : 'no';
+    const number = getRandomNumber(min, max);
+    const result = isEven(number) ? 'yes' : 'no';
 
-    return [question, answer];
+    return [number, result];
   };
 
   run(description, generateTask);
