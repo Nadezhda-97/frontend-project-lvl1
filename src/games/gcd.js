@@ -25,10 +25,9 @@ const runGcd = () => {
     const number2 = getRandomNumber(min, max);
 
     const question = `${number1} ${number2}`;
+    const gcd = findGcd(number1, number2);
 
-    const answer = findGcd(number1, number2);
-
-    return [question, answer.toString()];
+    return [question, gcd.toString()];
   };
 
   run(description, generateTask);

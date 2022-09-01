@@ -11,9 +11,9 @@ const isEven = (number) => number % 2 === 0;
 const runEven = () => {
   const generateTask = () => {
     const number = getRandomNumber(min, max);
-    const result = isEven(number) ? 'yes' : 'no';
+    const answer = isEven(number) ? 'yes' : 'no';
 
-    return [number, result];
+    return [number, answer];
   };
 
   run(description, generateTask);

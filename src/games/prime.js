@@ -22,10 +22,10 @@ const isPrime = (number) => {
 
 const runPrime = () => {
   const generateTask = () => {
-    const question = getRandomNumber(min, max);
-    const answer = isPrime(question) ? 'yes' : 'no';
+    const number = getRandomNumber(min, max);
+    const answer = isPrime(number) ? 'yes' : 'no';
 
-    return [question, answer];
+    return [number, answer];
   };
 
   run(description, generateTask);
