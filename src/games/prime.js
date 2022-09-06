@@ -7,7 +7,7 @@ const min = 1;
 const max = 100;
 
 const isPrime = (number) => {
-  if (number < 2) {
+  if (number <= 1) {
     return false;
   }
 
@@ -17,18 +17,20 @@ const isPrime = (number) => {
     }
   }
 
-  return number > 1;
+  return true;
+};
+
+const generateRound = () => {
+  const number = getRandomNumber(min, max);
+
+  const question = number.toString();
+  const answer = isPrime(number) ? 'yes' : 'no';
+
+  return [question, answer];
 };
 
 const runPrime = () => {
-  const generateTask = () => {
-    const number = getRandomNumber(min, max);
-    const answer = isPrime(number) ? 'yes' : 'no';
-
-    return [number, answer];
-  };
-
-  run(description, generateTask);
+  run(description, generateRound);
 };
 
 export default runPrime;
