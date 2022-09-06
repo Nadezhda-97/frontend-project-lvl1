@@ -7,33 +7,32 @@ const min = 1;
 const max = 100;
 const operators = ['+', '-', '*'];
 
-const getMathExpressionResult = (randomOperator, firstNumber, secondNumber) => {
-  switch (randomOperator) {
+const calculate = (operator, x, y) => {
+  switch (operator) {
     case '+':
-      return firstNumber + secondNumber;
+      return x + y;
     case '-':
-      return firstNumber - secondNumber;
+      return x - y;
     case '*':
-      return firstNumber * secondNumber;
+      return x * y;
     default:
-      return null;
+      throw new Error(`Unknown operator: '${operator}'!`);
   }
 };
 
+const generateRound = () => {
+  const number1 = getRandomNumber(min, max);
+  const number2 = getRandomNumber(min, max);
+  const operator = operators[getRandomIndex(operators)];
+
+  const question = `${number1} ${operator} ${number2}`;
+  const answer = calculate(operator, number1, number2).toString();
+
+  return [question, answer];
+};
+
 const runCalc = () => {
-  const generateTask = () => {
-    const number1 = getRandomNumber(min, max);
-    const number2 = getRandomNumber(min, max);
-    const operator = operators[getRandomIndex(operators)];
-
-    const mathExpression = `${number1} ${operator} ${number2}`;
-
-    const mathExpressionResult = getMathExpressionResult(operator, number1, number2);
-
-    return [mathExpression, mathExpressionResult.toString()];
-  };
-
-  run(description, generateTask);
+  run(description, generateRound);
 };
 
 export default runCalc;
