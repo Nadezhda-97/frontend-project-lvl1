@@ -8,15 +8,17 @@ const max = 100;
 
 const isEven = (number) => number % 2 === 0;
 
+const generateRound = () => {
+  const number = getRandomNumber(min, max);
+
+  const question = number.toString();
+  const answer = isEven(number) ? 'yes' : 'no';
+
+  return [question, answer];
+};
+
 const runEven = () => {
-  const generateTask = () => {
-    const number = getRandomNumber(min, max);
-    const answer = isEven(number) ? 'yes' : 'no';
-
-    return [number, answer];
-  };
-
-  run(description, generateTask);
+  run(description, generateRound);
 };
 
 export default runEven;
