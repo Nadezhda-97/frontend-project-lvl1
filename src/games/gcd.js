@@ -6,31 +6,20 @@ const description = 'Find the greatest common divisor of given numbers.';
 const min = 1;
 const max = 100;
 
-const findGcd = (firstNumber, secondNumber) => {
-  let valueOne = firstNumber;
-  let valueTwo = secondNumber;
-  let valueThree;
-  while (valueTwo !== 0) {
-    valueThree = valueTwo;
-    valueTwo = valueOne % valueTwo;
-    valueOne = valueThree;
-  }
+const findGcd = (x, y) => ((!y) ? x : findGcd(y, x % y));
 
-  return valueOne;
+const generateRound = () => {
+  const number1 = getRandomNumber(min, max);
+  const number2 = getRandomNumber(min, max);
+
+  const question = `${number1} ${number2}`;
+  const answer = findGcd(number1, number2).toString();
+
+  return [question, answer];
 };
 
 const runGcd = () => {
-  const generateTask = () => {
-    const number1 = getRandomNumber(min, max);
-    const number2 = getRandomNumber(min, max);
-
-    const question = `${number1} ${number2}`;
-    const gcd = findGcd(number1, number2);
-
-    return [question, gcd.toString()];
-  };
-
-  run(description, generateTask);
+  run(description, generateRound);
 };
 
 export default runGcd;
