@@ -12,34 +12,34 @@ const maxLength = 10;
 const minStep = 2;
 const maxStep = 5;
 
-const getMathProgression = (start, length, step) => {
-  let firstNumber = start;
-  const result = [];
+const buildProgression = (start, length, step) => {
+  const progression = [];
+
   for (let i = 0; i < length; i += 1) {
-    result[i] = firstNumber;
-    firstNumber += step;
+    progression.push(start + step * i);
   }
 
-  return result;
+  return progression;
+};
+
+const generateRound = () => {
+  const start = getRandomNumber(min, max);
+  const length = getRandomNumber(minLength, maxLength);
+  const step = getRandomNumber(minStep, maxStep);
+
+  const progression = buildProgression(start, length, step);
+
+  const index = getRandomIndex(progression);
+  const answer = progression[index].toString();
+
+  progression[index] = '..';
+  const question = progression.join(' ');
+
+  return [question, answer];
 };
 
 const runProgression = () => {
-  const generateTask = () => {
-    const progressionStart = getRandomNumber(min, max);
-    const progressionLength = getRandomNumber(minLength, maxLength);
-    const stepSize = getRandomNumber(minStep, maxStep);
-
-    const mathProgression = getMathProgression(progressionStart, progressionLength, stepSize);
-
-    const hiddenNumberIndex = getRandomIndex(mathProgression);
-    const hiddenNumber = mathProgression[hiddenNumberIndex];
-
-    mathProgression[hiddenNumberIndex] = '..';
-
-    return [mathProgression.join(' '), hiddenNumber.toString()];
-  };
-
-  run(description, generateTask);
+  run(description, generateRound);
 };
 
 export default runProgression;
